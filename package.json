@@ -1,0 +1,14 @@
+{
+  "name": "emsweb",
+  "version": "1.0.0",
+  "description": "Emergency Medical Support WebApp",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Libin P.Babu",
+  "license": "ISC",
+  "dependencies": {
+    "firebase": "^8.4.1"
+  }
+}
