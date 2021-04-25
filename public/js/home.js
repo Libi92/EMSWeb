@@ -64,11 +64,13 @@ $(document).ready(function () {
             });
     })
 
-    const userRef = database.ref('user');
+    const userRef = database.ref('user').orderByChild('userType').equalTo('Doctor');
     userRef.on('value', (snapshot) => {
         const data = snapshot.val();
         console.log(data);
         let keys = Object.keys(data);
+        let doctorsTable = $("#doctors_table");
+        doctorsTable.empty();
         for (let i in keys) {
             let key = keys[i];
             let user = data[key];
@@ -80,7 +82,8 @@ $(document).ready(function () {
                 '      <td>' + user['email'] + '</td>\n' +
                 '      <td>' + user['phone'] + '</td>\n' +
                 '    </tr>';
-            $("#doctors_table").append(row);
+
+            doctorsTable.append(row);
         }
     });
 });
