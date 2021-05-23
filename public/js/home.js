@@ -2,18 +2,6 @@ $(document).ready(function () {
     const auth = firebase.auth();
     const database = firebase.database();
 
-    auth.onAuthStateChanged(function (user) {
-        if (!user) {
-            window.location.href = 'index.html'
-        }
-    });
-
-    $("#link-logout").click(function (e) {
-        e.preventDefault();
-        auth.signOut();
-        window.location.href = 'index.html'
-    });
-
     function showToast() {
         const toastElList = [].slice.call(document.querySelectorAll('.toast'));
         const toastList = toastElList.map(function (toastEl) {
@@ -66,6 +54,7 @@ $(document).ready(function () {
 
     const userRef = database.ref('user').orderByChild('userType').equalTo('Doctor');
     userRef.on('value', (snapshot) => {
+        $("#loading").hide();
         const data = snapshot.val();
         console.log(data);
         let keys = Object.keys(data);
@@ -74,16 +63,30 @@ $(document).ready(function () {
         for (let i in keys) {
             let key = keys[i];
             let user = data[key];
+            let status = user['status'];
+            let button = '<td><button class="btn btn-outline-danger" onclick=\'enableUser(' + JSON.stringify(user) + ', "DISABLED")\'>Disable</button></td>\n';
+            if (status !== 'ACTIVE') {
+                button = '<td><button class="btn btn-outline-success" onclick=\'enableUser(' + JSON.stringify(user) + ', "ACTIVE")\'>Enable</button></td>\n';
+            }
 
             const row = '<tr>\n' +
                 '      <th scope="row">' + (parseInt(i) + 1) + '</th>\n' +
-                '      <td>' + user['displayName'] + '</td>\n' +
+                '      <td><img src="../images/outline_account_circle_black_18dp.png" style="margin-right: 20px">' +
+                user['displayName'] +
+                '       </td>\n' +
                 '      <td>' + user['designation'] + '</td>\n' +
                 '      <td>' + user['email'] + '</td>\n' +
                 '      <td>' + user['phone'] + '</td>\n' +
+                button +
                 '    </tr>';
 
             doctorsTable.append(row);
         }
     });
 });
+
+function enableUser(user, status) {
+    user['status'] = status;
+    const database = firebase.database();
+    database.ref('user/' + user['uid']).set(user);
+}

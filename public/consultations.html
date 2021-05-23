@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Consultations</title>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="css/home.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+
+<section id="menu">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img alt="" height="24" src="images/logo.png" width="30">
+            </a>
+            <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+                    class="navbar-toggler" data-bs-target="#navbarSupportedContent"
+                    data-bs-toggle="collapse" type="button">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a aria-current="page" class="nav-link" href="home.html">Home</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="users.html">Users</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link active" href="consultations.html">Consultations</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="link-logout">Logout</a>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+</section>
+
+<section class="mt-4" id="doctor_add">
+    <div class="container">
+        <div class="col-10 m-auto">
+            <h4>Consultations</h4>
+
+            <table class="table table-hover">
+                <tbody id="doctors_table">
+
+                </tbody>
+            </table>
+
+            <div class="spinner-border text-primary" id="loading" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script defer src="/__/firebase/8.4.1/firebase-app.js"></script>
+
+<script defer src="/__/firebase/8.4.1/firebase-auth.js"></script>
+<script defer src="/__/firebase/8.4.1/firebase-database.js"></script>
+<script defer src="/__/firebase/8.4.1/firebase-storage.js"></script>
+
+<script defer src="/__/firebase/init.js?useEmulator=true"></script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" type="application/javascript"></script>
+<script src="js/common.js" type="application/javascript"></script>
+<script src="js/consultations.js" type="application/javascript"></script>
+<script src="js/bootstrap.min.js" type="application/javascript"></script>
+</body>
+</html>
